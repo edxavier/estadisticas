@@ -1,0 +1,1 @@
+Mensajes en cola: pasar un txt sin lineas en blanco con todos los eventos
