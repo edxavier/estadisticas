@@ -172,12 +172,14 @@ class Ui_MainWindow(object):
     def abrir_tmcs_global(self):
         self.limpiar_cajas()
         tmcs = TMCS()
-        self.txtContenido.setText(tmcs.abrir_archivo('*.csv;;*.py'))
+        contenido = tmcs.abrir_archivo('*.txt;;*.csv;;*.py')
+        self.txtContenido.setText(contenido)
         try:
-            conteo_evento = tmcs.process_global_stats()
-            self.txtResultado.append(tmcs.archivo)
-            self.txtResultado.append('**********Conteo Global de eventos******** \n\n')
-            self.txtResultado.append(str(conteo_evento))
+            if(contenido is not None):
+                conteo_evento = tmcs.process_global_stats()
+                self.txtResultado.append(tmcs.archivo)
+                self.txtResultado.append('**********Conteo Global de eventos******** \n\n')
+                self.txtResultado.append(str(conteo_evento))                
 
 
         except Exception as e:  # <- naked except is a bad idea

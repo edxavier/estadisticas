@@ -45,7 +45,7 @@ class Ups(File_Opener):
 
         writer.save()
         writer.close()
-        self.graficar(conteo_eventos_por_dia, 'Historial de eventos por dia', 'Fecha', 'Total')
+        self.graficar(conteo_eventos_por_dia, 'Historial de eventos por día', 'Fecha', 'Total')
         #self.graficar_bar(conteo_eventos.to_frame(), 'Historial de eventos por dia', 'Evento', 'Total')
 
         return conteo_eventos, conteo_eventos_por_dia
@@ -84,6 +84,6 @@ class Ups(File_Opener):
         writer.save()
         writer.close()
 
-        self.graficar(conteo_eventos_por_dia, 'Historial de eventos por dia', 'Fecha', 'Total')
+        self.graficar(conteo_eventos_por_dia, 'Historial de eventos por día', 'Fecha', 'Total')
 
         return conteo_eventos, conteo_eventos_por_dia
