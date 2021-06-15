@@ -51,6 +51,7 @@ class TMCS(File_Opener):
         status_duration = (table["Fin"] - table["Inicio"]).astype('timedelta64[s]')
         table['Duracion'] = status_duration
 
+        
         plt.clf()
         #event_grouped = table.groupby(['Elemento', "Tipo", "Estado",]).agg({'Estado':['count'], 'Duracion':['sum'],})
         # Filtrar filas que la columna Tipo sean diferente a GW_INDRA y PUESTO
@@ -66,14 +67,21 @@ class TMCS(File_Opener):
 
         ruta, nombre = self.detalle_archivo()
         writer = pd.ExcelWriter(ruta + '/resultados_tmcs_' + str(nombre) + '.xlsx', engine='xlsxwriter')
-        grouped_gw.to_excel(writer, sheet_name='Conteo Eventos GW')
-        grouped_pos_count.to_excel(writer, sheet_name='Conteo Eventos Puesto')
-        grouped_pos_duration.to_excel(writer, sheet_name='Porc. Duracion Evento Puesto')
-
+        
+        
+        if not grouped_gw.empty:
+            grouped_gw.to_excel(writer, sheet_name='Conteo Eventos GW')
+        
+        if not grouped_pos_count.empty:
+            grouped_pos_count.to_excel(writer, sheet_name='Conteo Eventos Puesto')
+        
+        if not grouped_pos_duration.empty:
+            grouped_pos_duration.to_excel(writer, sheet_name='Porc. Duracion Evento Puesto')
+        
         writer.save()
         writer.close()
-        
-        return grouped_gw
+      
+        return grouped_pos_count
 
 
 
